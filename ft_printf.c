@@ -15,14 +15,13 @@
 //#include <stdio.h>
 //#include <stdarg.h>
 
-
 static int	check_arg(char specifier, va_list ap)
 {
 	int	count;
 
 	count = 0;
 	if (specifier == 'c')
-		count+= ft_putchar(va_arg(ap, int));
+		count += ft_putchar(va_arg(ap, int));
 	else if (specifier == 's')
 		count += ft_putstr(va_arg(ap, char *));
 	else if (specifier == 'd' || specifier == 'i')
@@ -37,14 +36,15 @@ static int	check_arg(char specifier, va_list ap)
 		count += ft_putnbr_p(va_arg(ap, unsigned long), 16);
 	else if (specifier == '%')
 		count += write (1, "%", 1);
-	else	count += write (1, &specifier, 1);
+	else
+		count += write (1, &specifier, 1);
 	return (count);
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	int	count;
+	int		count;
 
 	va_start(ap, format);
 	count = 0;
@@ -57,7 +57,7 @@ int	ft_printf(const char *format, ...)
 		}
 		else
 			count += write(1, format, 1);
-		++format;	
+		++format;
 	}
 	va_end(ap);
 	return (count);

@@ -2,19 +2,14 @@
 
 int	ft_putnbr_base(long n, int base, int is_uppercase)
 {
-	int	count;
-	int	rec_count;
-	char	*symbols_lower;
-	char	*symbols_upper;
+	int		count;
 	char	*symbols;
-		
+
 	count = 0;
-	symbols_lower = "0123456789abcdef";
-	symbols_upper = "0123456789ABCDEF";
 	if (is_uppercase)
-		symbols = symbols_upper;
+		symbols = "0123456789ABCDEF";
 	else
-		symbols = symbols_lower;	
+		symbols = "0123456789abcdef";
 	if (n < 0 && base == 10)
 	{
 		write(1, "-", 1);
@@ -23,13 +18,8 @@ int	ft_putnbr_base(long n, int base, int is_uppercase)
 	}
 	if (n < 0)
 		n = (unsigned int)n;
-
 	if ((unsigned long)n >= (unsigned int)base)
-	{
-		rec_count = ft_putnbr_base(n / base, base, is_uppercase);	
-		count += rec_count;
-	}
+		count += ft_putnbr_base(n / base, base, is_uppercase);
 	write (1, &symbols[n % base], 1);
-	return count + 1;
+	return (count + 1);
 }
-
